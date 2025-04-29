@@ -1,17 +1,32 @@
+document.getElementById("container").addEventListener("click", function () {
+  const audio = document.getElementById("audio");
+  audio.play();
 
-document
-  .getElementById("container")
-  .addEventListener("click", function (event) {
-    const numOfWindow = 4; //more 'numOfWindow' more pop-ups
-    for (i = 0; i < numOfWindow; i++) {
-      var popWindow = window.open(
-        "you-are-an-idiot.html",
-        "_blank",
-        "width=500,height=400"
-      );
-      popWindow.moveTo(
-        window.innerWidth * Math.random(),
-        window.innerHeight * Math.random()
-      );
+  // Start true popup madness
+  setInterval(() => {
+    const popupWidth = 400;
+    const popupHeight = 300;
+
+    const x = Math.floor(Math.random() * (screen.availWidth - popupWidth));
+    const y = Math.floor(Math.random() * (screen.availHeight - popupHeight));
+
+    const w = window.open(
+      "you-are-an-idiot.html",
+      "_blank",
+      `width=${popupWidth},height=${popupHeight},left=${x},top=${y},toolbar=0,location=0,menubar=0,status=0`
+    );
+
+  
+    if (w) {
+      w.moveTo(x, y);
     }
-  });
+  }, 500);
+
+  // Shaking effect lol
+  setInterval(() => {
+    const x = Math.floor(Math.random() * 10) - 5;
+    const y = Math.floor(Math.random() * 10) - 5;
+    window.moveBy(x, y);
+  }, 100);
+});
+
